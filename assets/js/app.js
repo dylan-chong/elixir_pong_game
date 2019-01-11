@@ -16,6 +16,4 @@ import "phoenix_html"
 // Local files can be imported directly using relative paths, for example:
 // import socket from "./socket"
 
-import "pixi";
-import "p2";
-import * as Phaser from "phaser-ce";
+import "./game"
