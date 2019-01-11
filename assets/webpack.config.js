@@ -6,7 +6,6 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const phaserModulePath = path.join(__dirname, '/node_modules/phaser-ce/');
-console.log(phaserModulePath, "******************88")
 
 module.exports = (env, options) => ({
   optimization: {
