@@ -4,9 +4,17 @@ import Phaser from "phaser";
 
 class Game {
   constructor() {
-    this.game = new Phaser.Game(800, 600, Phaser.AUTO, '', {preload: this.preload.bind(this), create: this.create.bind(this), update: this.update.bind(this)})
+    this.game = new Phaser.Game(1920, 1080, Phaser.AUTO, '', {
+      preload: this.preload.bind(this),
+      create: this.create.bind(this),
+      update: this.update.bind(this)
+    });
   }
   preload() {
+    this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+    this.game.scale.pageAlignHorizontally = true;
+    this.game.scale.pageAlignVertically = true;
+
     this.game.load.image('star', '/images/star.png');
   }
   create() {
