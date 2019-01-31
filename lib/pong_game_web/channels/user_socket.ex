@@ -2,7 +2,7 @@ defmodule PongGameWeb.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  # channel "room:*", PongGameWeb.RoomChannel
+  channel "room:*", PongGameWeb.RoomChannel
 
   # Socket params are passed from the client and can
   # be used to verify and authenticate a user. After
