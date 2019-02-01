@@ -14,7 +14,10 @@ defmodule PongGame.Application do
       PongGameWeb.Endpoint
       # Starts a worker by calling: PongGame.Worker.start_link(arg)
       # {PongGame.Worker, arg},
+#                  {PongGameWeb.Game, []}
     ]
+    # start genserver ? ???
+    PongGameWeb.Game.start_link
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options

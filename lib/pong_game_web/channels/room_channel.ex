@@ -7,6 +7,8 @@ defmodule PongGameWeb.RoomChannel do
 
   def handle_in("new_msg", %{"body" => body}, socket) do
     broadcast!(socket, "new_msg", %{body: body})
+    pid = GenServer.whereis({:global, :default_game})
+    GenServer.call(pid, :test)
     {:noreply, socket}
   end
 end
