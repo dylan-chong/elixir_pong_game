@@ -4,10 +4,6 @@ defmodule PongGameWeb.RoomChannel do
   def join("room:game", message, socket) do
     {:ok, socket}
   end
-  def join("room:" <> _private_room_id, _params, _socket) do
-    # TODO remove this?
-    {:error, %{reason: "unauthorized"}}
-  end
 
   def handle_in("new_msg", %{"body" => body}, socket) do
     broadcast!(socket, "new_msg", %{body: body})
