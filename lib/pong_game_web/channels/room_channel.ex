@@ -1,9 +1,7 @@
 defmodule PongGameWeb.RoomChannel do
   use Phoenix.Channel
 
-  # TODO rename lobby
-  def join("room:lobby", message, socket) do
-    IO.inspect [message, socket]
+  def join("room:game", message, socket) do
     {:ok, socket}
   end
   def join("room:" <> _private_room_id, _params, _socket) do
