@@ -5,13 +5,15 @@ defmodule PongGameWeb.Game do
     GenServer.start_link(__MODULE__, nil, name: {:global, :default_game})
   end
 
+  @impl true
   def init(_) do
-    {:ok, "hello world"}
+    {:ok, %{count: 0}}
   end
 
   @impl true
-  def handle_call(:test, _from, state) do
-    IO.puts state
-    {:reply, nil, state}
+  def handle_call(:increment_count, _from, state) do
+    new_state = %{state | count: state.count + 1}
+    IO.inspect(new_state)
+    {:reply, new_state, new_state}
   end
 end

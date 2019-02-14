@@ -13,8 +13,9 @@ defmodule PongGame.Application do
       # Start the endpoint when the application starts
       PongGameWeb.Endpoint,
       # Start the game via PongGameWeb.Game.start_link
-      %{id: PongGameWeb.Game, start: {PongGameWeb.Game, :start_link}}
+      %{id: PongGameWeb.Game, start: {PongGameWeb.Game, :start_link, []}}
     ]
+
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: PongGame.Supervisor]
