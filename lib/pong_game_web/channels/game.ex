@@ -8,13 +8,12 @@ defmodule PongGameWeb.Game do
   @impl true
   def init(_) do
     schedule()
-    {:ok, %{count: 0}}
+    {:ok, %{position: %{x: 20, y: 20}}}
   end
 
   @impl true
-  def handle_call(:increment_count, _from, state) do
-    new_state = %{state | count: state.count + 1}
-    IO.inspect(new_state)
+  def handle_call(:move_paddle, _from, state) do
+    new_state = %{state | position: %{x: state.position.x, y: state.position.y + 1}}
     {:reply, new_state, new_state}
   end
 
@@ -26,6 +25,6 @@ defmodule PongGameWeb.Game do
   end
 
   defp schedule do
-    Process.send_after(self(), :refresh_clients, 1_000)
+    Process.send_after(self(), :refresh_clients, 30)
   end
 end

@@ -7,7 +7,7 @@
 // Pass the token on params as below. Or remove it
 // from the params if you are not using authentication.
 import {Socket} from "phoenix"
-
+import {game} from "./game"
 let socket = new Socket("/socket", {params: {token: window.userToken}})
 
 // When you connect, you'll often need to authenticate the client.
@@ -57,10 +57,9 @@ socket.connect()
 // Now that you are connected, you can join channels with a topic:
 let channel = socket.channel("room:game")
 
-window.addEventListener("keypress", event => {
-  if (event.keyCode === 13) { // enter for now. TODO remove
-    let message = "Test " + Date()
-    channel.push("new_msg", {body: message})
+window.addEventListener("keydown", event => {
+  if (event.keyCode === 40) { // down
+    channel.push("down", {})
   }
 })
 
@@ -69,7 +68,8 @@ channel.on("new_msg", payload => {
 })
 
 channel.on("new_game_state", payload => {
-  console.log(payload)
+  game.setNewState(payload)
+  console.log(JSON.stringify(payload))
 })
 
 channel.join()
