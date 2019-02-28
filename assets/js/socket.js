@@ -65,7 +65,7 @@ window.addEventListener("keypress", event => {
 })
 
 channel.on("new_msg", payload => {
-  console.log(`[${Date()}] ${payload.body}`)
+  console.log(`[${Date()}] ${payload.count}`)
 })
 
 channel.join()
