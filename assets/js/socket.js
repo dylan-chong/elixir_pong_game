@@ -68,6 +68,10 @@ channel.on("new_msg", payload => {
   console.log(`[${Date()}] ${payload.count}`)
 })
 
+channel.on("new_game_state", payload => {
+  console.log(payload)
+})
+
 channel.join()
   .receive("ok", resp => { console.log("Joined successfully", resp) })
   .receive("error", resp => { console.log("Unable to join", resp) })
