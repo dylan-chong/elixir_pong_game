@@ -12,8 +12,14 @@ defmodule PongGameWeb.Game do
   end
 
   @impl true
-  def handle_call(:move_paddle, _from, state) do
-    new_state = %{state | position: %{x: state.position.x, y: state.position.y + 1}}
+  def handle_call(:move_paddle_up, _from, state) do
+    new_state = %{state | position: %{x: state.position.x, y: state.position.y - 3}}
+    {:reply, new_state, new_state}
+  end
+
+  @impl true
+  def handle_call(:move_paddle_down, _from, state) do
+    new_state = %{state | position: %{x: state.position.x, y: state.position.y + 3}}
     {:reply, new_state, new_state}
   end
 

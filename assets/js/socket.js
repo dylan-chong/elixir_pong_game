@@ -58,6 +58,9 @@ socket.connect()
 let channel = socket.channel("room:game")
 
 window.addEventListener("keydown", event => {
+  if (event.keyCode === 38) { // up
+    channel.push("up", {})
+  }
   if (event.keyCode === 40) { // down
     channel.push("down", {})
   }
@@ -69,7 +72,7 @@ channel.on("new_msg", payload => {
 
 channel.on("new_game_state", payload => {
   game.setNewState(payload)
-  console.log(JSON.stringify(payload))
+  // console.log(JSON.stringify(payload))
 })
 
 channel.join()
