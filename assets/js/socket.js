@@ -78,7 +78,7 @@ channel.on("new_msg", payload => {
 
 channel.on("new_game_state", payload => {
   game.setNewState(payload)
-  // console.log(JSON.stringify(payload))
+  console.log(JSON.stringify(payload))
 })
 
 channel.join()

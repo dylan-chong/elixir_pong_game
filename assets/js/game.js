@@ -31,14 +31,18 @@ class Game {
   	this.star.body.velocity.x = 200;
   	this.star.body.velocity.y = 200;
 
-  	this.paddle = this.game.add.sprite(20, 20, 'paddle')
+  	this.paddle1 = this.game.add.sprite(0, 0, 'paddle')
+  	this.paddle2 = this.game.add.sprite(0, 0, 'paddle')
   }
   update() {
     if (!this.serverGameState) {
       return
     }
-    this.paddle.x = this.serverGameState.position.x
-    this.paddle.y = this.serverGameState.position.y
+    this.paddle1.x = this.serverGameState.player_1.position.x
+    this.paddle1.y = this.serverGameState.player_1.position.y
+
+    this.paddle2.x = this.serverGameState.player_2.position.x
+    this.paddle2.y = this.serverGameState.player_2.position.y
   }
   setNewState(state) {
     this.serverGameState = state
