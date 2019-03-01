@@ -5,13 +5,18 @@ defmodule PongGameWeb.RoomChannel do
     {:ok, socket}
   end
 
-  def handle_in("up", _, socket) do
-    game_state = GenServer.call({:global, :default_game}, :move_paddle_up)
-    {:noreply, socket}
-  end
-
-  def handle_in("down", _, socket) do
-    game_state = GenServer.call({:global, :default_game}, :move_paddle_down)
+  def handle_in("key_event", %{"key" => key, "direction" => direction}, socket) do
+    GenServer.call({:global, :default_game}, {
+      :move_paddle,
+      case key do
+        "up" -> :up
+        "down" -> :down
+      end,
+      case direction do
+        "press" -> true
+        "release" -> false
+      end
+    })
     {:noreply, socket}
   end
 end

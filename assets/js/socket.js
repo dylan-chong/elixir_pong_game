@@ -57,13 +57,19 @@ socket.connect()
 // Now that you are connected, you can join channels with a topic:
 let channel = socket.channel("room:game")
 
+const keyPress = (event, direction) => {
+  if (event.keyCode === 38 || event.keyCode === 40) {
+    const key = event.keyCode === 38 ? "up" : "down"
+    channel.push("key_event", {key, direction})
+  }
+}
+
+window.addEventListener("keyup", event => {
+  keyPress(event, 'release');
+})
+
 window.addEventListener("keydown", event => {
-  if (event.keyCode === 38) { // up
-    channel.push("up", {})
-  }
-  if (event.keyCode === 40) { // down
-    channel.push("down", {})
-  }
+  keyPress(event, 'press');
 })
 
 channel.on("new_msg", payload => {
