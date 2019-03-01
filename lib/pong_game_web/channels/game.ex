@@ -27,7 +27,7 @@ defmodule PongGameWeb.Game do
         player_2: %{
           socket_id: :player_not_assigned,
           position: %{
-            x: 1060,
+            x: 1880,
             y: 20
           },
           keys: %{
