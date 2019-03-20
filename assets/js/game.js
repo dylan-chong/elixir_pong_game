@@ -16,6 +16,7 @@ class Game {
     this.game.scale.pageAlignVertically = true;
 
     this.game.load.image('star', '/images/star.png');
+    this.game.load.image('paddle', '/images/paddle.png');
   }
   create() {
     this.star = this.game.add.sprite(32, this.game.world.height - 150, 'star');
@@ -29,8 +30,23 @@ class Game {
 
   	this.star.body.velocity.x = 200;
   	this.star.body.velocity.y = 200;
+
+  	this.paddle1 = this.game.add.sprite(0, 0, 'paddle')
+  	this.paddle2 = this.game.add.sprite(0, 0, 'paddle')
   }
-  update() {}
+  update() {
+    if (!this.serverGameState) {
+      return
+    }
+    this.paddle1.x = this.serverGameState.player_1.position.x
+    this.paddle1.y = this.serverGameState.player_1.position.y
+
+    this.paddle2.x = this.serverGameState.player_2.position.x
+    this.paddle2.y = this.serverGameState.player_2.position.y
+  }
+  setNewState(state) {
+    this.serverGameState = state
+  }
 }
 
-let game = new Game()
+export let game = new Game()
